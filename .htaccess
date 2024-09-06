@@ -1,0 +1,20 @@
+php_value date.timezone Africa/Nairobi
+php_value display_errors Off
+
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+RewriteEngine On
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:CF-Visitor} !{"scheme":"https"}
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+Options -Indexes
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^signup$ /AIH_A3/signup.php [L,QSA]
+RewriteRule ^login$ /AIH_A3/login.php [L,QSA]
+RewriteRule ^login$ /AIH_A3/profile.php [L,QSA]
+RewriteRule ^login$ /AIH_A3/2fa.php [L,QSA]
+RewriteRule ^login$ /AIH_A3/verify.php [L,QSA]
